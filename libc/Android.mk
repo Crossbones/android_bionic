@@ -573,6 +573,9 @@ ifeq ($(TARGET_ARCH),arm)
   ifeq ($(ARCH_ARM_USE_NON_NEON_MEMCPY),true)
     libc_common_cflags += -DARCH_ARM_USE_NON_NEON_MEMCPY
   endif
+  ifeq ($(ARCH_ARM_HAVE_ARMV7A),true)
+    libc_common_cflags += -DNEON_UNALIGNED_ACCESS -DNEON_MEMCPY_ALIGNMENT_DIVIDER=224
+  endif
 endif # !arm
 
 ifeq ($(TARGET_ARCH),x86)
